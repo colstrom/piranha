@@ -1,6 +1,6 @@
-# shellops-aws
+# piranha
 
-Shell Ops for Amazon
+fish functions for Amazon workflows
 
 # Description
 
