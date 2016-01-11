@@ -1,5 +1,5 @@
 function missing-dependencies
-    for dependency in (cat dependencies.list)
+    for dependency in aws jq
         not available-in-path $dependency
         and echo $dependency
     end
