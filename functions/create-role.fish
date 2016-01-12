@@ -7,7 +7,7 @@ function create-role --argument-names name
     end
 
     set --local role iam/roles/$name
-    set --local policy assume-role-policy.json
+    set --local policy assume-role.json
 
     if has $policy $role
         aws iam create-role --role-name $name --assume-role-policy-document file://$role/$policy
