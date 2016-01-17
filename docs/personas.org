@@ -1,0 +1,44 @@
+#+TITLE: Piranha User Personas
+
+* Overview
+
+This document describes the personas ~piranha~ needs to consider.
+
+* Personas
+
+** The Operator
+
+Responsible for the infrastructure.
+
+*** Wants
+1. An audit trail.
+2. To know the state of the system.
+3. To apply changes with minimal effort.
+4. To be aware of any known issues with ~piranha~.
+
+** The Next Guy
+
+Inherits the infrastructure when the Operator eventually loses his mind.
+
+*** Wants
+1. To understand the system without documentation from the Operator.
+   1. This documentation is only rumoured to exist.
+2. To make changes safely.
+
+** The Developer
+
+Needs to interact with the infrastructure.
+
+*** Wants
+1. To solve his own problems without depending on the Operator.
+2. To request specific changes without learning Operations.
+
+** The Contributor
+
+May not interact with the infrastructure or have any connection to the team.
+
+*** Wants 
+1. To fix a bug.
+2. To add a feature.
+   1. Preferably one that will be accepted.
+3. Contributions to be consistent with the existing code.
