@@ -1,7 +1,7 @@
 function elastic-ips --argument-names resource
     set --local resource_type (echo "$resource" | cut -f 1 -d '-')
     if test "$resource_type" = 'eni'
-        aws ec2 describe-network-interfaces --filters=Name=network-interface-id,Values=$resource | jq --raw-output .NetworkInterfaces[].Association.PublicIp
+        aws ec2 describe-network-interfaces --filters Name=network-interface-id,Values=$resource | jq --raw-output .NetworkInterfaces[].Association.PublicIp
     else
         set --local filter
         switch "$resource_type"
