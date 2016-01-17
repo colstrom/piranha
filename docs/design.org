@@ -1,0 +1,79 @@
+#+TITLE: Piranha Design Overview
+
+\pagebreak
+
+* Overview
+
+This document defines the goals of ~piranha~, the rationale behind the design,
+and the principles that guide the development.
+
+* Core Philosophy
+
+1. Piranha must always strive to:
+  1. remove more complexity than it adds.
+  2. play nice with other systems.
+  3. be something The Next Guy wants to inherit.
+
+In pursuit of these goals, ~piranha~ has a few guiding principles.
+
+* Principles
+
+** Describing infrastructure and manipulating it are fundamentally different problems.
+
+When we separate these, problems become simpler.
+
+1. Clearly defined problems are simpler to solve.
+2. Simpler solutions tend to have fewer bugs than complicated ones.
+3. Interaction between parts of the system are easier to understand.
+
+*** When describing infrastructure:
+
+1. Documenting existing state should be automated.
+2. Documenting a desired state should be painless.
+3. Interpreting previously documented state should be obvious.
+   1. Changes should make sense in a Pull Request or ~git diff~.
+4. Documented state should not depend on ~piranha~ to be meaningful.
+
+*** When manipulating infrastructure:
+
+1. It should be possible to deploy from nothing.
+   1. This deployment must not /require/ human oversight to operate.
+2. Modifying existing infrastructure is complicated.
+   1. Provide a way to understand /what/ ~piranha~ will do, and /why/.
+   2. If ~piranha~ does not understand something, it should report this.
+
+** Rediscover before (re)inventing something new.
+
+1. Every tool we can reuse is one we don't have to maintain.
+2. The biggest barrier to adoption is creating a new ecosystem.
+   1. Using established tools removes this barrier.
+
+** Maintain freedom to use other tools.
+
+1. It should be possible to move to ~piranha~ after using another tool.
+2. It should be possible to move to another tool after using ~piranha~.
+
+** Develop with purpose
+
+1. Every function should solve a single problem.
+2. It should always be clear how functions interact with each other.
+
+* Practical Minimalism for Dependencies
+
+Any external dependencies add to the challenge of maintaining portability and
+convenience of use. However, there are cases where avoiding those dependencies
+unnecessarily complicates the development process. Minimalism for its own sake
+can be counterproductive.
+
+*** Example: ~jq~
+
+As a single binary with no runtime dependencies, ~jq~ is an easy-to-resolve
+dependency. Implementing a JSON parser in fish is possible, but the complexity
+is disproportionate to the benefit.
+
+*** Example: ~awscli~
+
+As a python application with several dependencies, ~awscli~ is non-trivial to
+resolve. However, it provides a stable, actively-maintained interface to the
+vast AWS API. The development and maintenance of a fish port of this tool would
+require significant effort that could be better spent developing ~piranha~.
