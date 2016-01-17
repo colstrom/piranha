@@ -2,6 +2,10 @@
 
 fish functions for Amazon workflows
 
+## Overview
+
+`piranha` is an expressive DSL for describing your AWS infrastructure, and an intuitive framework for reducing complexity in your Cloud Operations.
+
 # Description
 
 Experimental workflow for managing AWS on the commandline.
