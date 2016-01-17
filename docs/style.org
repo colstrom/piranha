@@ -1,0 +1,228 @@
+#+TITLE: Piranha Code Conventions and Style Guide
+\pagebreak
+* Overview
+
+This document describes the conventions and style used in the ~piranha~ source code.
+
+* Functions
+
+** Filenames
+
+A function should be defined in a file with a name matching the function name
+with the extension ~.fish~.
+
+** Naming and Perceived Affordance
+
+A function's name can imply its signature, and make the system as a whole feel
+cohesive and intuitive. It only takes a few deviations to become confusing, so
+consider what the name implies when choosing a name for your function.
+
+A good name communicates:
+
+1. How do I use this function?
+   1. Some idea of what it expects from me as arguments, if any.
+2. What will happen if I invoke this function?
+   1. Some idea of what I can expect as output, if anything.
+   2. Are there side-effects to invoking it?
+
+#+CAPTION: Overview of behaviour implied by function names
+#+NAME: table:functions-overview
+| Name             | Implied Usage                       | Tends to...                          |
+|------------------+-------------------------------------+--------------------------------------|
+| ~action~         | Performs action, expects arguments  | Assume first argument is a ~subject~ |
+| ~action-subject~ | Performs ~action~ to a ~subject~    | Output results to ~STDOUT~           |
+| ~state-subject~  | List ~subjects~ in ~state~          | Output lists on ~STDOUT~             |
+| ~subject-state~  | Check if a ~subject~ is ~state~     | Rely on status codes                 |
+| ~subject~        | Wrapper for ~actions~ on ~subjects~ | Be consistent with wrapped functions |
+
+** Naming Conventions
+
+The rest of this section describes the general grammar of ~piranha~ and an
+overview of typical interfaces for functions based on their names.
+
+1. Function names should use ~lisp-case~.
+2. Functions should be named as one of:
+  1. ~action~
+  2. ~action-subject~
+  3. ~state-subject~
+  4. ~subject-state~
+  5. ~subject~
+3. ~action~ should be a single word.
+4. ~state~ should be a single word.
+5. ~subject~ may be multiple words
+
+\pagebreak
+
+*** ~action~
+
+#+CAPTION: Typical Interfaces for an ~action~ function
+#+NAME: table:action-interfaces
+| Interface | Implied Usage                          |
+|-----------+----------------------------------------|
+| Arguments | Expected, first is usually a ~subject~ |
+| ~STDOUT~  | Expected, usually result of ~action~   |
+| ~STDERR~  | Conditional, usually failure reason    |
+| Exit ~0~  | ~action~ was successful                |
+| Exit ~!0~ | ~action~ failed, check ~STDERR~        |
+
+#+CAPTION: Example of an ~action~ function
+#+NAME: example:action-function
+#+BEGIN_SRC fish
+  get iam/groups/developers/users
+#+END_SRC
+
+\pagebreak
+
+*** ~action-subject~
+
+#+CAPTION: Typical Interfaces for an ~action-subject~ function
+#+NAME: table:action-subject-interfaces
+| Interface | Implied Usage                                     |
+|-----------+---------------------------------------------------|
+| Arguments | Optional, often specify ~subject~ details         |
+| ~STDOUT~  | Expected, usually result of ~action~              |
+| ~STDERR~  | Conditional, usually failure reason               |
+| Exit ~0~  | Successfully ~actioned~ ~subject~, check ~STDOUT~ |
+| Exit ~!0~ | Unable to ~action~ ~subject~, check ~STDERR~      |
+
+#+CAPTION: Example of an ~action-subject~ function
+#+NAME: example:action-subject-function
+#+BEGIN_SRC fish
+  create-bucket forge
+#+END_SRC
+
+\pagebreak
+
+*** ~state-subject~
+
+#+CAPTION: Typical Interfaces for a ~state-subject~ function
+#+NAME: table:state-subject-interfaces
+| Interface | Implied Usage                                |
+|-----------+----------------------------------------------|
+| Arguments | Unexpected                                   |
+| ~STDOUT~  | Expected, zero or more ~subjects~ in ~state~ |
+| ~STDERR~  | Conditional, usually failure reason          |
+| Exit ~0~  | Success, results on ~STDOUT~                 |
+| Exit ~!0~ | Failure, reason on ~STDERR~                  |
+
+#+CAPTION: Example of a ~state-subject~ function
+#+NAME: example:state-subject-function
+#+BEGIN_SRC fish
+  available-ips
+#+END_SRC
+
+\pagebreak
+
+*** ~subject-state~
+
+#+CAPTION: Typical Interfaces for a ~state-subject~ function
+#+NAME: table:subject-state-interfaces
+| Interface | Implied Usage                        |
+|-----------+--------------------------------------|
+| Arguments | Optional, probably ~subject~ details |
+| ~STDOUT~  | Unexpected                           |
+| ~STDERR~  | Unexpected                           |
+| Exit ~0~  | ~subject~ is in ~state~              |
+| Exit ~!0~ | ~subject~ is *not* in ~state~        |
+
+#+CAPTION: Example of a ~subject-state~ function
+#+NAME: example:subject-state-function
+#+BEGIN_SRC fish
+user-exists colstrom
+#+END_SRC
+
+\pagebreak
+
+*** ~subject~
+
+#+CAPTION: Typical Interfaces for a ~subject~ function
+#+NAME: table:subject-interfaces
+| Interface | Implied Usage                           |
+| Arguments | Mandatory, first is usually an ~action~ |
+| ~STDOUT~  | Conforms to wrapped function            |
+| ~STDERR~  | Conforms to wrapped function            |
+| Exit ~0~  | Conforms to wrapped function            |
+| Exit ~!0~ | Conforms to wrapped function            |
+
+#+CAPTION: Example of a ~subject~ function
+#+NAME: example:subject-function
+#+BEGIN_SRC fish
+  mfa-device resync colstrom
+#+END_SRC
+
+\pagebreak
+
+* Variables
+
+Variable names should use ~snake_case~ for internal variables, and
+~SCREAMING_SNAKE_CASE~ for external variables.
+
+** Internal
+
+Internal variables are local to the function. They should either come from
+arguments in the function definition, or be explicitly set with ~--local~ in the
+function body to deliberately shadow any unexpected exported or universal
+variables.
+
+#+NAME: example:internal-variables
+#+BEGIN_SRC fish
+  function example --argument-names foo bar
+      set --local baz
+  end
+#+END_SRC
+
+** External
+
+External variables exist outside the scope of the function. A common case would
+be environment variables. When working with external variables, using
+~SCREAMING_SNAKE_CASE~ makes them visible. These should be treated as immutable,
+unless intentionally modifying the environment outside the function's scope. In
+the latter case, we can make this intent clear with the ~--export~ option.
+
+#+NAME: example:external-variables
+#+BEGIN_SRC fish
+  function example --argument-names foo bar
+      set --export PATH /opt/piranha/bin $PATH
+  end
+#+END_SRC
+
+\pagebreak
+
+* Portability
+
+Where possible, relying on ~builtins~ and standard fish ~functions~ is the
+safest choice. When developing ~piranha~, it may be useful to use a more
+restricted ~$fish_function_path~.
+
+#+BEGIN_SRC fish
+  set fish_function_path $PWD/vendor/piranha/functions $__fish_datadir/functions
+#+END_SRC
+
+Consistent with the [[http://fishshell.com/docs/current/design.html][fish design principles]], use of external commands is
+acceptable within ~piranha~. Care should be taken to that these external
+commands do not unreasonably restrict portability.
+
+** Reference System
+
+The "Reference System" can be built with the following Dockerfile:
+
+*** Dockerfile
+
+#+CAPTION: Reference System Dockerfile
+#+NAME: source:dockerfile-reference-system
+#+BEGIN_SRC dockerfile
+  FROM busybox:musl
+  ENTRYPOINT ["/bin/sh"]
+#+END_SRC
+
+** Other Systems
+
+Invoking an external command is acceptable if:
+1. it is available in the default ~$PATH~ defined in [[Reference System]], and
+2. all arguments are valid on
+  1. the implementation available in [[Reference System]].
+  2. the current stable release of Mac OS X, representing the BSD platform.
+  3. the current Long-Term Support release of Ubuntu, representing the GNU
+     platform.
+
+     
