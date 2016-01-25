@@ -30,7 +30,7 @@ When we separate these, problems become simpler.
 
 1. Documenting existing state should be automated.
 2. Documenting a desired state should be painless.
-3. Interpreting previously documented state should be obvious.
+3. Interpreting previously documented state should be simple.
    1. Changes should make sense in a Pull Request or ~git diff~.
 4. Documented state should not depend on ~piranha~ to be meaningful.
 
