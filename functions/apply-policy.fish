@@ -9,10 +9,14 @@ function apply-policy --argument-names document
     set --local target (basename (parent $document 2))
     set --local policy (basename -s .json $document)
 
-    switch $type
-        case user group
-            aws iam put-$type-policy --$type-name $target --policy-name $policy --policy-document file://$document
-        case bucket
-            aws s3api put-bucket-policy --bucket $target --policy file://$document
+    if managed-policy $document
+        aws iam attach-$type-policy --$type-name $target --policy-arn (lookup-policy $policy)
+    else
+        switch $type
+            case user group
+                aws iam put-$type-policy --$type-name $target --policy-name $policy --policy-document file://$document
+            case bucket
+                aws s3api put-bucket-policy --bucket $target --policy file://$document
+        end
     end
 end
