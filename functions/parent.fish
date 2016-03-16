@@ -1,10 +1,10 @@
 function parent --argument-names key limit
-    if test -z "$key"
+    if empty "$key"
         print-status usage 'parent <key> [limit]'
         return -1
     end
 
-    if test -z "$limit"
+    if empty "$limit"
         set limit 1
     end
 
