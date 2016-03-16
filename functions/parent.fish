@@ -1,6 +1,7 @@
 function parent --argument-names key limit
     if test -z "$key"
         print-status usage 'parent <key> [limit]'
+        return -1
     end
 
     if test -z "$limit"
