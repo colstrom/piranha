@@ -1,6 +1,6 @@
 function apply-policy --argument-names document
     print-status iam/apply-policy "$document"
-    if test -z "$document"
+    if empty "$document"
         print-status usage 'apply-policy <document>'
         return -1
     end
