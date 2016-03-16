@@ -1,5 +1,5 @@
 function describe --argument-names key
-    if test -z $key
+    if empty "$key"
         print-status usage 'describe <key>'
         return -1
     end
