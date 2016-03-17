@@ -10,7 +10,7 @@ function delete-group --argument group
         detach-policy group "$group" "$policy"
     end
 
-    for user in (actual-users-in-group "$group")
+    for user in (real-users-in-group "$group")
         delete-from-group "$group" "$user"
     end
 
