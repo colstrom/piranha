@@ -2,7 +2,7 @@ function apply-policy --argument document
     print-status iam/apply-policy "$document"
     if empty "$document"
         usage apply-policy '<document>'
-        return -1
+        return (false)
     end
 
     set --local type (basename (parent $document 3 | sed 's/s$//'))
