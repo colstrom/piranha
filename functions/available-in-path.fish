@@ -1,3 +1,3 @@
-function available-in-path --argument-names command
+function available-in-path --argument command
     which -s $command
 end
