@@ -4,6 +4,6 @@ function user-exists --argument name
         return (false)
     end
 
-    print-status iam/user-exists $name
+    print-status user-exists $name
     aws iam get-user --user-name $name > /dev/null ^ /dev/null
 end
