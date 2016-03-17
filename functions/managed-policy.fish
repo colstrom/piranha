@@ -1,5 +1,5 @@
 function managed-policy --argument document
-    if test -z "$document"
+    if empty "$document"
         stderr "usage: managed-policy <document>"
         return (false)
     end
