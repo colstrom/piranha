@@ -1,4 +1,4 @@
-function create-bucket --argument-names name
+function create-bucket --argument name
     print-status s3/create-bucket $name
     set --local options
 
