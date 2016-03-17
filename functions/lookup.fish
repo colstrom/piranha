@@ -1,4 +1,4 @@
-function lookup --argument-names resource
+function lookup --argument resource
     set --local key
     set --local value
 
