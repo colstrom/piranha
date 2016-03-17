@@ -4,7 +4,7 @@ function delete-user --argument user
         return (false)
     end
 
-    if contains "$user" (actual-users)
+    if contains "$user" (real-users)
         for group in (user-in-groups "$user")
             delete-from-group "$group" "$user"
         end
