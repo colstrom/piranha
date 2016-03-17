@@ -1,4 +1,9 @@
 function create-bucket --argument name
+    if empty "$name"
+        usage create-bucket '<name>'
+        return (false)
+    end
+
     print-status s3/create-bucket $name
     set --local options
 
