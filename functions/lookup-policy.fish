@@ -1,5 +1,5 @@
 function lookup-policy --argument name
-    if test -z "$name"
+    if empty "$name"
         stderr "usage: lookup-policy <name>"
         return (false)
     end
