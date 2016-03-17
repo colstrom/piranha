@@ -1,5 +1,5 @@
 function create-role --argument name
-    print-status iam/create-role $name
+    print-status create-role $name
 
     if empty "$name"
         usage create-role '<name>'
