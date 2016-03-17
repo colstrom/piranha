@@ -1,7 +1,7 @@
 function get --argument key
     if empty "$key"
         usage get '<key>'
-        return -1
+        return (false)
     end
 
     if test -e $key
