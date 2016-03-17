@@ -1,5 +1,5 @@
 function has --argument-names key resource
-    if test -z "$key" -o -z "$resource"
+    if empty "$key" "$resource"
         print-status usage 'has <key> <resource>'
         return (false)
     end
