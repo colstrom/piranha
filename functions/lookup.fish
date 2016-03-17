@@ -11,7 +11,7 @@ function lookup --argument resource
             set value $argv[3]
         case '*'
             usage lookup '<resource> (<name> | [key] <value>)'
-            return -1
+            return (false)
     end
 
     aws ec2 describe-tags --filters Name=resource-type,Values=$resource Name=tag:$key,Values=$value | jq --raw-output .Tags[].ResourceId | sort -u
