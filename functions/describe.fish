@@ -1,7 +1,7 @@
 function describe --argument key
     if empty "$key"
         usage describe '<key>'
-        return -1
+        return (false)
     end
 
     if test -e $key
