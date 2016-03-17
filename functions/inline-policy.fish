@@ -1,5 +1,5 @@
 function inline-policy --argument document
-    if test -z "$document"
+    if empty "$document"
         stderr "usage: inline-policy <document>"
         return (false)
     end
