@@ -1,6 +1,6 @@
 function parent --argument-names key limit
     if empty "$key"
-        print-status usage 'parent <key> [limit]'
+        usage parent '<key> [limit]'
         return -1
     end
 
