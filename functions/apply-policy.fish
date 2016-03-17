@@ -1,4 +1,4 @@
-function apply-policy --argument-names document
+function apply-policy --argument document
     print-status iam/apply-policy "$document"
     if empty "$document"
         usage apply-policy '<document>'
