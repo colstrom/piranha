@@ -4,6 +4,6 @@ function create-group --argument name
         return (false)
     end
 
-    print-status iam/create-group $name
+    print-status create-group $name
     aws iam create-group --group-name $name
 end
