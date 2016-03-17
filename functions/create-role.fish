@@ -1,4 +1,4 @@
-function create-role --argument-names name
+function create-role --argument name
     print-status iam/create-role $name
 
     if empty "$name"
