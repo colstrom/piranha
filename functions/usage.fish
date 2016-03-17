@@ -1,7 +1,7 @@
 function usage --argument command
     if empty "$command"
         usage usage '<command> [args]'
-        return -1
+        return (false)
     end
 
     echo -n "usage: $command " >& 2
