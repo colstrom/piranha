@@ -10,7 +10,7 @@ function lookup --argument-names resource
             set key $argv[2]
             set value $argv[3]
         case '*'
-            print-status usage 'lookup <resource> (<name> | [key] <value>)'
+            usage lookup '<resource> (<name> | [key] <value>)'
             return -1
     end
 
