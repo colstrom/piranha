@@ -1,4 +1,4 @@
-function get --argument-names key
+function get --argument key
     if empty "$key"
         usage get '<key>'
         return -1
