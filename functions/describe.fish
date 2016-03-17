@@ -1,4 +1,4 @@
-function describe --argument-names key
+function describe --argument key
     if empty "$key"
         usage describe '<key>'
         return -1
