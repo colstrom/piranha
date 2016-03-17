@@ -1,6 +1,6 @@
 function lookup-policy --argument name
     if empty "$name"
-        stderr "usage: lookup-policy <name>"
+        usage lookup-policy '<name>'
         return (false)
     end
 
