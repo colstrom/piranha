@@ -1,5 +1,5 @@
 function stderr
-    if empty $argv
+    if empty "$argv"
         while read --local --array line
             echo $line >& 2
         end
