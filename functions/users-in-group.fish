@@ -4,5 +4,5 @@ function users-in-group --argument group
         return (false)
     end
 
-    get iam/groups/$group/users
+    get groups/$group/users
 end
