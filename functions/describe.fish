@@ -1,6 +1,6 @@
 function describe --argument-names key
     if empty "$key"
-        print-status usage 'describe <key>'
+        usage describe '<key>'
         return -1
     end
 
