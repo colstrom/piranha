@@ -5,7 +5,7 @@ function set-password --argument user password
     end
 
     if user-has-password $user
-        aws iam update-login-profile --user-name $user --password $password --password-reset-required
+        reset-password $user $password
     else
         aws iam create-login-profile --user-name $user --password $password --password-reset-required
     end
