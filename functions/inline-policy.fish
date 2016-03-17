@@ -1,6 +1,6 @@
 function inline-policy --argument document
     if empty "$document"
-        stderr "usage: inline-policy <document>"
+        usage inline-policy '<document>'
         return (false)
     end
 
