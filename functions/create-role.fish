@@ -6,7 +6,7 @@ function create-role --argument name
         return (false)
     end
 
-    set --local role iam/roles/$name
+    set --local role roles/$name
     set --local policy assume-role.json
 
     if has $policy $role
