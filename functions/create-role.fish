@@ -3,7 +3,7 @@ function create-role --argument name
 
     if empty "$name"
         usage create-role '<name>'
-        return -1
+        return (false)
     end
 
     set --local role iam/roles/$name
