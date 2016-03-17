@@ -1,5 +1,5 @@
 function get --argument-names key
-    if test -z "$key"
+    if empty "$key"
         print-status usage 'get <key>'
         return -1
     end
