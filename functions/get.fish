@@ -1,6 +1,6 @@
 function get --argument-names key
     if empty "$key"
-        print-status usage 'get <key>'
+        usage get '<key>'
         return -1
     end
 
