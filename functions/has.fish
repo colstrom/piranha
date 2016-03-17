@@ -1,4 +1,4 @@
-function has --argument-names key resource
+function has --argument key resource
     if empty "$key" "$resource"
         usage has '<key>' '<resource>'
         return (false)
