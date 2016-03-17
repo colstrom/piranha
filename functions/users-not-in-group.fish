@@ -4,5 +4,5 @@ function users-not-in-group --argument group
         return (false)
     end
 
-    comm -13 (users-in-group $group | psub) (get iam/users | psub)
+    comm -13 (users-in-group $group | psub) (get users | psub)
 end
