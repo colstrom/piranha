@@ -4,6 +4,6 @@ function role-exists --argument name
         return (false)
     end
 
-    print-status iam/role-exists $name
+    print-status role-exists $name
     aws iam get-role --role-name $name > /dev/null ^ /dev/null
 end
