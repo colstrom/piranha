@@ -4,6 +4,6 @@ function add-user-to-group --argument user group
         return (false)
     end
 
-    print-status iam/add-user-to-group "$user $group"
+    print-status add-user-to-group "$user $group"
     aws iam add-user-to-group --user-name $user --group-name $group
 end
