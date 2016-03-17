@@ -1,4 +1,4 @@
-function parent --argument-names key limit
+function parent --argument key limit
     if empty "$key"
         usage parent '<key> [limit]'
         return -1
