@@ -4,6 +4,6 @@ function group-exists --argument name
         return (false)
     end
 
-    print-status iam/group-exists $name
+    print-status group-exists $name
     aws iam get-group --group-name $name > /dev/null ^ /dev/null
 end
