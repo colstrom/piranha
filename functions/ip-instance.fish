@@ -1,6 +1,6 @@
-function instance --argument public_ip
+function ip-instance --argument public_ip
     if empty "$public_ip"
-        usage instance '<public-ip>'
+        usage ip-instance '<public-ip>'
         return (false)
     end
 
