@@ -9,5 +9,5 @@ function rogue --argument subject
         return (false)
     end
 
-    comm -23 (eval real-$subject | psub) (get $subject | psub)
+    comm -23 (eval real-$subject | sort | psub) (get $subject | sort | psub)
 end
