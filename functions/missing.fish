@@ -9,5 +9,5 @@ function missing --argument subject
         return (false)
     end
 
-    comm -13 (eval real-$subject | psub) (get $subject | psub)
+    comm -13 (eval real-$subject | sort | psub) (get $subject | sort | psub)
 end
