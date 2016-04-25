@@ -1,3 +1,3 @@
 function users-without-mfa
-    comm -13 (users-with-mfa | psub) (get users | psub)
+    comm -13 (users-with-mfa | sort | psub) (get users | sort | psub)
 end
