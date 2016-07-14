@@ -1,5 +1,4 @@
 function apply-policy --argument document
-    print-status apply-policy "$document"
     trace (status --current-filename) $argv
 
     if empty "$document"
@@ -21,4 +20,6 @@ function apply-policy --argument document
                 aws s3api put-bucket-policy --bucket $target --policy file://$document
         end
     end
+
+    print $argv --tag=apply-policy --(state $status)
 end

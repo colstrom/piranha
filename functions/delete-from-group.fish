@@ -6,7 +6,6 @@ function delete-from-group --argument group user
         return (false)
     end
 
-    print-status delete-from-group "$argv"
-
     aws iam remove-user-from-group --group-name "$group" --user-name "$user"
+    print $argv --tag=delete-from-group --(state $status)
 end

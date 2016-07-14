@@ -6,6 +6,6 @@ function create-user --argument name
         return (false)
     end
 
-    print-status create-user $name
     aws iam create-user --user-name $name
+    print $argv --tag=create-user --(state $status)
 end

@@ -6,7 +6,6 @@ function detach-policy --argument type name policy
         return (false)
     end
 
-    print-status detach-policy "$argv"
-
     aws iam detach-$type-policy --$type-name "$name" --policy-arn (lookup-policy "$policy")
+    print $argv --tag=detach-policy --(state $status)
 end

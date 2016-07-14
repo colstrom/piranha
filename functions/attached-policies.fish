@@ -6,7 +6,6 @@ function attached-policies --argument type name
         return (false)
     end
 
-    print-status attached-policies "$argv"
-
     aws iam list-attached-$type-policies --$type-name "$name" | jq --raw-output .AttachedPolicies[].PolicyName
+    print $argv --tag=attached-policies --$(state $status)
 end

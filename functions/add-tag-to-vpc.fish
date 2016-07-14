@@ -1,5 +1,4 @@
 function add-tag-to-vpc --argument resource key value
-    print-status vpc/add-tag "$argv"
     trace (status --current-filename) $argv
 
     if empty "$resource" "$key" "$value"
@@ -8,4 +7,5 @@ function add-tag-to-vpc --argument resource key value
     end
 
     and aws ec2 create-tags --resources $resource --tags Key=$key,Value=$value
+    print $argv --tag=add-tag-to-vpc --(state $status)
 end

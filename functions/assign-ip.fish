@@ -1,5 +1,4 @@
 function assign-ip --argument vpc instance
-    print-status assign-ip "$argv"
     trace (status --current-filename) $argv
 
     if empty "$vpc" "$instance"
@@ -19,4 +18,5 @@ function assign-ip --argument vpc instance
     and return 2
 
     echo aws ec2 associate-address --public-ip $ip --instance-id (lookup instance "$instance-$vpc")
+    print $argv --tag=assign-ip --(state $status)
 end

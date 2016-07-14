@@ -1,5 +1,4 @@
 function create-role --argument name
-    print-status create-role $name
     trace (status --current-filename) $argv
 
     if empty "$name"
@@ -12,7 +11,8 @@ function create-role --argument name
 
     if has $policy $role
         aws iam create-role --role-name $name --assume-role-policy-document file://$role/$policy
+        print $argv --tag=create-role --(state $status)
     else
-        print-status error "Expected to find policy at $role/$policy"
+        print --tag=create-role --failure "Expected to find policy at $role/$policy"
     end
 end

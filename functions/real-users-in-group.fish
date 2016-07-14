@@ -6,7 +6,6 @@ function real-users-in-group --argument group
         return (false)
     end
 
-    print-status real-users-in-group "$argv"
-
     aws iam get-group --group-name "$group" | jq --raw-output .Users[].UserName | sort
+    print $argv --tag=real-users-in-group --(state $status)
 end

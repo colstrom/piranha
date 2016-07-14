@@ -6,8 +6,6 @@ function delete-group --argument group
         return (false)
     end
 
-    print-status delete-group "$argv"
-
     for policy in (attached-policies group "$group")
         detach-policy group "$group" "$policy"
     end
@@ -17,4 +15,5 @@ function delete-group --argument group
     end
 
     aws iam delete-group --group-name "$group"
+    print $argv --tag=delete-group --(state $status)
 end
