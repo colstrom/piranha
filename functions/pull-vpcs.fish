@@ -1,4 +1,6 @@
 function pull-vpcs
+    trace (status --current-filename) $argv
+
     print-status pull-vpcs
 
     mkdir -p vpcs

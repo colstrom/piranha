@@ -1,4 +1,6 @@
 function delete-mfa --argument user
+    trace (status --current-filename) $argv
+
     if empty "$user"
         usage delete-mfa '<user>'
         return (false)

@@ -1,4 +1,6 @@
 function user-has-password --argument user
+    trace (status --current-filename) $argv
+
     if empty "$user"
         usage user-has-password '<user>'
         return (false)

@@ -1,4 +1,6 @@
 function missing --argument subject
+    trace (status --current-filename) $argv
+
     if empty "$subject"
         usage missing '<subject>'
         return (false)

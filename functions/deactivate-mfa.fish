@@ -1,4 +1,6 @@
 function deactivate-mfa --argument user
+    trace (status --current-filename) $argv
+
     if empty "$user"
         usage deactivate-mfa '<user>'
         return (false)

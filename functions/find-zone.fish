@@ -1,4 +1,6 @@
 function find-zone --argument domain
+    trace (status --current-filename) $argv
+
     if empty "$domain"
         usage find-zone '<domain>'
         return (false)

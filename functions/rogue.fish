@@ -1,4 +1,6 @@
 function rogue --argument subject
+    trace (status --current-filename) $argv
+
     if empty "$subject"
         usage rogue '<subject>'
         return (false)

@@ -1,4 +1,6 @@
 function mfa-serial --argument user
+    trace (status --current-filename) $argv
+
     if empty "$user"
         usage mfa-serial '<user>'
         return (false)

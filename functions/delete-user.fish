@@ -1,4 +1,6 @@
 function delete-user --argument user
+    trace (status --current-filename) $argv
+
     if empty "$user"
         usage delete-user '<user>'
         return (false)

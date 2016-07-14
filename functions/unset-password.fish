@@ -1,4 +1,6 @@
 function unset-password --argument user
+    trace (status --current-filename) $argv
+
     if empty "$user"
         usage unset-password '<user>'
         return (false)

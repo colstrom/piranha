@@ -1,4 +1,6 @@
 function describe --argument key
+    trace (status --current-filename) $argv
+
     if empty "$key"
         usage describe '<key>'
         return (false)

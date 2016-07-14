@@ -1,4 +1,6 @@
 function update-vpcs
+    trace (status --current-filename) $argv
+
     for name in (get vpcs)
         set vpc (lookup vpc $name)
 

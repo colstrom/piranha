@@ -1,4 +1,6 @@
 function update-roles
+    trace (status --current-filename) $argv
+
     for role in (get roles)
         role-exists $role
         or create-role $role

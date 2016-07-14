@@ -1,4 +1,6 @@
 function print-status --argument tag message
+    trace (status --current-filename) $argv
+
     if empty "$tag" "$message"
         usage print-status '<tag>' '<message>'
         return (false)

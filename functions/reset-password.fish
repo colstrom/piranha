@@ -1,4 +1,6 @@
 function reset-password --argument user password
+    trace (status --current-filename) $argv
+
     if empty "$user" "$password"
         usage reset-password '<user>' '<password>'
         return (false)

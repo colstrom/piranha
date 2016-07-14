@@ -1,4 +1,6 @@
 function managed-policy --argument document
+    trace (status --current-filename) $argv
+
     if empty "$document"
         usage managed-policy '<document>'
         return (false)

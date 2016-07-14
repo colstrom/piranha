@@ -1,4 +1,6 @@
 function update-groups
+    trace (status --current-filename) $argv
+
     for group in (get groups)
         group-exists $group
         or create-group $group

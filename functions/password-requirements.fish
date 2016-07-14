@@ -1,4 +1,6 @@
 function password-requirements
+    trace (status --current-filename) $argv
+
     set --local policy (mktemp)
     aws iam get-account-password-policy | jq .PasswordPolicy > $policy
 

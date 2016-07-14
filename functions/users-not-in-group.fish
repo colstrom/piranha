@@ -1,4 +1,6 @@
 function users-not-in-group --argument group
+    trace (status --current-filename) $argv
+
     if empty "$group"
         usage users-not-in-group '<group>'
         return (false)

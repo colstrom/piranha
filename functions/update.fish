@@ -1,4 +1,6 @@
 function update
+    trace (status --current-filename) $argv
+
     if contains all $argv
         update roles users groups buckets vpcs
     end

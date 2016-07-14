@@ -1,4 +1,6 @@
 function changed --argument subject
+    trace (status --current-filename) $argv
+
     if empty "$subject"
         usage changed '<subject>'
         return (false)

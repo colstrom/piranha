@@ -1,4 +1,6 @@
 function resync-mfa --argument user first second
+    trace (status --current-filename) $argv
+
     if empty "$user" "$first" "$second"
         usage resync-mfa '<user>' '<first>' '<second>'
         return (false)

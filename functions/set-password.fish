@@ -1,4 +1,6 @@
 function set-password --argument user password
+    trace (status --current-filename) $argv
+
     if empty "$user" "$password"
         usage set-password '<user>' '<password>'
         return (false)

@@ -1,4 +1,6 @@
 function generate-password
+    trace (status --current-filename) $argv
+
     set --local length (aws iam get-account-password-policy | jq --raw-output .PasswordPolicy.MinimumPasswordLength)
     set --local requirements (password-requirements)
 

@@ -1,4 +1,6 @@
 function user-in-groups --argument user
+    trace (status --current-filename) $argv
+
     if empty "$user"
         usage user-in-groups '<user>'
         return (false)

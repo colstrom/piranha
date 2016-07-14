@@ -1,4 +1,6 @@
 function elastic-ips --argument resource
+    trace (status --current-filename) $argv
+
     if empty "$resource"
         usage elastic-ips '<resource>'
         return (false)

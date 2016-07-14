@@ -1,4 +1,6 @@
 function parent --argument key limit
+    trace (status --current-filename) $argv
+
     if empty "$key"
         usage parent '<key> [limit]'
         return (false)

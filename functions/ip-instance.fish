@@ -1,4 +1,6 @@
 function ip-instance --argument public_ip
+    trace (status --current-filename) $argv
+
     if empty "$public_ip"
         usage ip-instance '<public-ip>'
         return (false)

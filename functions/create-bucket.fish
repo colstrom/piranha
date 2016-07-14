@@ -1,4 +1,6 @@
 function create-bucket --argument name
+    trace (status --current-filename) $argv
+
     if empty "$name"
         usage create-bucket '<name>'
         return (false)
