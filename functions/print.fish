@@ -40,4 +40,6 @@ function print
     else
         printf "[%s] $args\n" (set_color $color_flags $color)$tag(set_color normal) >& 2
     end
+
+    test "$state" != failure
 end
