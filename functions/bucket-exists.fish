@@ -1,4 +1,6 @@
 function bucket-exists --argument name
+    trace (status --current-filename) $argv
+
     if empty "$name"
         usage bucket-exists '<name>'
         return (false)

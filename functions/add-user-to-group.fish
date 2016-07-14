@@ -1,4 +1,6 @@
 function add-user-to-group --argument user group
+    trace (status --current-filename) $argv
+
     if empty "$user" "$group"
         usage add-user-to-group '<user>' '<group>'
         return (false)

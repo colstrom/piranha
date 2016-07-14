@@ -1,4 +1,6 @@
 function delete-group --argument group
+    trace (status --current-filename) $argv
+
     if empty "$group"
         usage delete-group '<group>'
         return (false)

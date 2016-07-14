@@ -1,4 +1,6 @@
 function get --argument key
+    trace (status --current-filename) $argv
+
     if empty "$key"
         usage get '<key>'
         return (false)

@@ -1,5 +1,7 @@
 function assign-ip --argument vpc instance
     print-status assign-ip "$argv"
+    trace (status --current-filename) $argv
+
     if empty "$vpc" "$instance"
         usage assign-ip '<vpc>' '<instance>'
         return (false)

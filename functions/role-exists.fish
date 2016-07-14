@@ -1,4 +1,6 @@
 function role-exists --argument name
+    trace (status --current-filename) $argv
+
     if empty "$name"
         usage role-exists '<name>'
         return (false)

@@ -1,4 +1,6 @@
 function attached-policies --argument type name
+    trace (status --current-filename) $argv
+
     if empty "$type" "$name"
         usage attached-policies '<type>' '<name>'
         return (false)

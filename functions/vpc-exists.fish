@@ -1,4 +1,6 @@
 function vpc-exists --argument name
+    trace (status --current-filename) $argv
+
     if empty "$name"
         usage vpc-exists '<name>'
         return (false)

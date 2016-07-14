@@ -1,4 +1,6 @@
 function detach-policy --argument type name policy
+    trace (status --current-filename) $argv
+
     if empty "$type" "$name" "$policy"
         usage detach-policy '<type>' '<name>' '<policy>'
         return (false)

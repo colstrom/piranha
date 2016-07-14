@@ -1,4 +1,6 @@
 function user-exists --argument name
+    trace (status --current-filename) $argv
+
     if empty "$name"
         usage user-exists '<name>'
         return (false)

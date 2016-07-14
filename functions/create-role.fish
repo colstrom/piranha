@@ -1,5 +1,6 @@
 function create-role --argument name
     print-status create-role $name
+    trace (status --current-filename) $argv
 
     if empty "$name"
         usage create-role '<name>'

@@ -1,4 +1,6 @@
 function print
+    trace (status --current-filename) $argv
+
     for arg in $argv
         if echo $arg | grep -qE '^-+'
             set opts $opts (echo $arg | sed -E 's/^-+//')

@@ -1,4 +1,6 @@
 function group-exists --argument name
+    trace (status --current-filename) $argv
+
     if empty "$name"
         usage group-exists '<name>'
         return (false)

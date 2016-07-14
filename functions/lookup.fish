@@ -1,4 +1,6 @@
 function lookup --argument resource
+    trace (status --current-filename) $argv
+
     set --local key
     set --local value
 

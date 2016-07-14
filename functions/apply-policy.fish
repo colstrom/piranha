@@ -1,5 +1,7 @@
 function apply-policy --argument document
     print-status apply-policy "$document"
+    trace (status --current-filename) $argv
+
     if empty "$document"
         usage apply-policy '<document>'
         return (false)
