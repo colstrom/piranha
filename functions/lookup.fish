@@ -16,5 +16,11 @@ function lookup --argument resource
             return (false)
     end
 
-    aws ec2 describe-tags --filters Name=resource-type,Values=$resource Name=tag:$key,Values=$value | jq --raw-output .Tags[].ResourceId | sort -u
+    set result (aws ec2 describe-tags --filters Name=resource-type,Values=$resource Name=tag:$key,Values=$value | jq --raw-output .Tags[].ResourceId | sort -u)
+
+    if test (count $result) -gt 0
+        echo $result
+    else
+        false
+    end
 end
