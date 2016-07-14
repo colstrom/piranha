@@ -14,6 +14,6 @@ function get --argument key
                 cat $key
         end
     else
-        return 1
+        return 2
     end
 end
